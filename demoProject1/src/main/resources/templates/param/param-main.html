@@ -16,9 +16,68 @@
 
   <!-- 타입지정안하면 submit  form태그안에 있으면 요청주소로 제출됨-->
   <button>제출하기 </button>  
+</form>
 
+<hr>
+
+<h3>
+  2.@RequestParam 어노테이이션 이용 
+  - 낱개파라미터 컨트롤러에서 얻어오는 방법 
+  
+</h3>
+<form action="/param/test2" method="POST">
+  책 제목 : <input type="text" name="title"> <br>
+  작성자 : <input type="text" name="writer"><br>
+  가격 : <input type="text" name="price"><br>
+  출판사 : <input type="text" name="publisher"><br>
+
+ <button>제출하기</button>
+</form>
+
+<hr>
+
+<h3>
+3. @RequestParam 어노테이션 사용 
+-여러개 파라미터 컨트롤러에서 얻어오는 방법 
+</h3>
+
+<form action="/param/test3" method="post">
+ 색상 :
+  Red <input type="checkbox" name="color" value="RED">
+  GREEN <input type="checkbox" name="color" value="GREEN">
+  BLUE <input type="checkbox" name="color" value="BLUE">
+
+  <br>
+
+과일 :
+APPLE <input type="checkbox" name="fruit" value="apple">
+BANANA <input type="checkbox" name="fruit" value="banana">
+oRACNE <input type="checkbox" name="fruit" value="orange">
+
+<br><br>
+
+상품명 : <input type="text" name="productName"><br>
+유통기한 : <input type="date" name="expirationDate"><br>
+
+<button>제출하기 </button>
 
 
 </form>
+
+
+<hr>
+
+<h3>4. @ModelAttrivute를 이용한 파라미터 얻어오기 </h3>
+
+<form action ="/param/test4" method="post">
+ 
+  ID : <input type="text" name="memberId"><br>
+  pw : <input type="password" name="memberPw"><br>
+  name : <input type="text" name="memberName"><br>
+  age : <input type="text" name="memberAge"><br>
+  
+<button>버튼</button>
+</form>
+
 </body>
 </html>
