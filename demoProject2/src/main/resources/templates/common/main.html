@@ -6,6 +6,9 @@
   <title>thmeleaf</title>
 </head>
 <body>
+  <th:block th:replace="~{fragments/temp :: nav}"></th:block>
+  <!-- nav라는 이름의 조각 -->
+
   <h1>tymeleaf</h1>
 
   <h3>1. 템플릿 엔진 </h3>
@@ -36,6 +39,45 @@
   </li>
 </ol>
 
+<li>
+	<form action="/example/ex2" method="post">
+		<h4>타임리프 예제2</h4>
+		이름 : <input type="text" name="inputName"> <br>
+		나이 : <input type="number" name="inputAge"> <br>
+		<br>
+		
+		색상 :
+		Red : <input type="checkbox" name="color" value="red">
+		Green  <input type="checkbox" name="color" value="green">
+		blue  <input type="checkbox" name="color" value="blue">
+		
+		<button>제출하기</button>
+	</form>
+	
+	
+</li>
+
+
+
+<li>
+  <a href="/example/ex3">타임리프 예제3</a>
+</li>
+
+
+
+<li>
+  <a href="/example/ex4">타임리프 예제4</a>
+</li>
+
+
+<li>
+  <a href="/example/ex5">타임리프 예제4</a>
+</li>
+
+
+
+
+<th:block th:replace="~{fragments/temp::temp2}"></th:block>
 <th:block th:replace="~{fragments/footer}"></th:block>
 
 
