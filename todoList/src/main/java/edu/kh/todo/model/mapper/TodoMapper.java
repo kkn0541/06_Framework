@@ -1,6 +1,7 @@
 package edu.kh.todo.model.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -70,5 +71,51 @@ public interface TodoMapper {
 	 * @return result
 	 */
 	int addTodo(Todo todo);
+
+	/** 할일 상세 조회 
+	 * @param todoNo
+	 * @return
+	 */
+	Todo todoDetail(int todoNo);
+
+	/** 완료 여부 변경 
+	 * @param todo
+	 * @return result
+	 */
+	int changeComplete(Todo todo);
+
+	
+	
+	
+	/**수정페이지 이동
+	 * @param todoNo
+	 * @return
+	 */
+	Todo viewDetail(int todoNo);
+
+	
+	
+	
+	/**수정 
+	 * @param todoTitle
+	 * @param todoContent
+	 * @param todoNo 
+	 * @return
+	 */
+
+	int updateTodo(Todo todo);
+
+	
+	
+	/**삭제
+	 * @param todoNo
+	 * @return
+	 */
+	int todoDelete(int todoNo);
+
+	
+	
+
+
 	
 }
