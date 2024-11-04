@@ -115,6 +115,13 @@ public interface TodoMapper {
 
 	
 	
+	/** 전체 할일 개수 조회 (ajax)
+	 * @return totalCount
+	 */
+	int getTotalCount();
+
+	
+	
 
 
 	

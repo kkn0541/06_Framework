@@ -104,8 +104,7 @@
 		UPDATE TB_TODO SET
 		TODO_TITLE = #{todoTitle},
 		TODO_CONTENT=#{todoContent}
-		WHERE TODO_NO =
-		${todoNo}
+		WHERE TODO_NO =	${todoNo}
 	</update>
 
 
@@ -115,4 +114,13 @@
 		WHERE TODO_NO=${todoNo}
 
 	</delete>
+	
+	
+	<!--  전체 할일 개수 조회  -->
+	<select id="getTotalCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_TODO
+	</select>
+	
+	
+	
 </mapper>

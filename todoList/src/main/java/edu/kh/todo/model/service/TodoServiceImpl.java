@@ -114,5 +114,29 @@ public class TodoServiceImpl implements TodoService{
 		return mapper.todoDelete(todoNo);
 	}
 
+	@Override
+	public int getTotalCount() {
+
+		return mapper.getTotalCount();
+	}
+
+	@Override
+	public int getCompleteCount() {
+		// TODO Auto-generated method stub
+		return mapper.getCompleteCount();
+	}
+
+	
+	
+	//ajax 할떄 새로만든 메서드
+	// return 은  기존에 사용했던 selectAll 가져옴 
+	//할일 목록 조회 
+	@Override
+	public List<Todo> selectList() {
+		return mapper.selectAll();
+		
+	}
+
+	
 
 }
