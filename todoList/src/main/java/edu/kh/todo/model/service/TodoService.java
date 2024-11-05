@@ -88,6 +88,8 @@ public interface TodoService {
 	 */
 	List<Todo> selectList();
 
+	int updateTodo(Todo todo);
+
 
 
 	

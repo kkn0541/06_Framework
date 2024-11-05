@@ -137,6 +137,12 @@ public class TodoServiceImpl implements TodoService{
 		
 	}
 
+	@Override
+	public int updateTodo(Todo todo) {
+		// TODO Auto-generated method stub
+		 return mapper.updateTodo(todo);
+	}
+
 	
 
 }

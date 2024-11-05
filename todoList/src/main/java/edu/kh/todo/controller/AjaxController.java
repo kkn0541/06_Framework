@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -111,7 +112,7 @@ public class AjaxController {
 
 			// @RequestBody는 기본적으로 json 형식을 기대함.
 			@RequestBody Todo todo
-	// 요청 body에 담긴 값을 Todo DTO에 저장
+			// 요청 body에 담긴 값을 Todo DTO에 저장
 	// ->요청보내는 곳에서 데이터를 JSON형태로 제출해야함
 	// ->ex) JSON.stringify (js 객체 )
 
@@ -156,6 +157,22 @@ public class AjaxController {
 		return service.todoDelete(todoNo);
 		
 	}
+	
+	//완료 여부 변경 
+	@ResponseBody  // 비동기 요청 받는 경우  , return 값자체를 비동기 요청한곳으로 돌려보낸다는 것을 의미 
+	@PutMapping("changeComplete")
+	public int changeComplete(@RequestBody Todo todo) {
+		return service.changeComplete(todo);
+		
+	}
+	//할일 수정
+	@ResponseBody
+	@PutMapping("update")
+	public int todoUpdate(@RequestBody Todo todo ) {
+		
+		return service.updateTodo(todo);
+	}
+	
 	
 	
 }
