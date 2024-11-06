@@ -40,9 +40,9 @@ CREATE SEQUENCE SEQ_MEMBER_NO NOCACHE;
 -- 샘플 회원 데이터 삽입
 INSERT INTO "MEMBER"
 VALUES(SEQ_MEMBER_NO.NEXTVAL, 
-			 'member01@kh.or.kr',
+			 'user01@kh.or.kr',
 			 '암호화된 비밀번호',
-			 '샘플1',
+			 '유저일',
 			 '01012341234',
 			 NULL,
 			 NULL,
@@ -54,6 +54,11 @@ VALUES(SEQ_MEMBER_NO.NEXTVAL,
 COMMIT;
 
 SELECT * FROM "MEMBER";
+
+--회원 1번 유저일 암호화된 비밀번호로 업데이트 (pass01!)
+UPDATE "MEMBER" SET 
+MEMBER_PW ='$2a$10$mQuTt31FyF3uXL2qAkF21eZsPnoQP6zeo9pKCevmsWtGJEOsKtFhu'
+WHERE MEMBER_NO=1;
 
 -----------------------------------------
 

@@ -101,9 +101,11 @@ public class TodoController {
 	 */
 
 	@GetMapping("changeComplete")
-	public String changeComplete(Todo todo, RedirectAttributes ra) {
+	public String changeComplete(Todo todo, RedirectAttributes ra, Model model) {
 		// todo 에는 -todoNo ,complete 두 필드가 세팅된 상태
 
+		model.addAttribute("todo",todo.getTodoContent());
+		
 		// 변경 서비스 호출
 		int result = service.changeComplete(todo);
 
