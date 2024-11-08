@@ -62,7 +62,7 @@ public class ExampleController {
 		//복수 값(배열 , List) Model을 이용해서 html로 전달 
 		List<String> fruitList = new ArrayList<>();
 		
-		fruitList.add("사과");
+		fruitList.add("사과"); 
 		fruitList.add("딸기");
 		fruitList.add("바나나");
 		

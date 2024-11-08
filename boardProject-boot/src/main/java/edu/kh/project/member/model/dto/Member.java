@@ -1,4 +1,4 @@
-package edu.kh.project.model.dto;
+package edu.kh.project.member.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +19,7 @@ public class Member {
 	private int memberNo;
 	private String memberEmail;
 	private String memberPw;
-	private String memberNickName;
+	private String memberNickname;
 	private String memberTel;
 	private String memberAddress;
 	private String profileImg;
