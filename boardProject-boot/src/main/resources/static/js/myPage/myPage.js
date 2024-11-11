@@ -27,7 +27,19 @@ function execDaumPostcode() {
     }).open();
 }
 
-document.querySelector("#searchAddress").addEventListener("click" ,execDaumPostcode);
+
+//주소 검색 버튼 클릭시 (myPage-info.html 외에도 문제가 발생하지 않도록
+//예외처리 해둔 부분 ! )
+const searchAddress = document.querySelector("#searchAddress");
+
+if(searchAddress !=null){ // 화면상에 id가 
+    searchAddress.addEventListener("click",execDaumPostcode);
+
+}
+
+
+//기존코드(myPage-info.html)외에는 문제가 발생할수 있는 코드 
+//document.querySelector("#searchAddress").addEventListener("click" ,execDaumPostcode);
 
 
 /* 회원 정보 수정 페이지 */

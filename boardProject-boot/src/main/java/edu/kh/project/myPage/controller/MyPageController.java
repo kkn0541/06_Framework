@@ -1,5 +1,8 @@
 package edu.kh.project.myPage.controller;
 
+import java.util.Map;
+
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,6 +10,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttribute;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import edu.kh.project.member.model.dto.Member;
@@ -14,14 +20,34 @@ import edu.kh.project.myPage.model.service.MyPageService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+
+/*
+ * @SessionAttributes의 역할 
+ * -Model에 추가되 ㄴ속성 중 key값이 일치하는 속성을 session scope로 변경 
+ * -SessionStatus 이용시 session에 등록된 완료할 대상을 찾는 용도 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * */
+
+
+
+@SessionAttributes({"loginMember"})
 @Controller
 @RequestMapping("myPage")
-@RequiredArgsConstructor
+@RequiredArgsConstructor   // autowird 자동으로 해줌 
 @Slf4j // 로그 객체 자동완성
 public class MyPageController {
 
 	private final MyPageService service;
 
+	
+	
+	
+	
+	
 	/**
 	 * @param loginMember 세션에 존재하는 loginMember를 얻어와 매개변수에 대입
 	 * @return
@@ -58,56 +84,58 @@ public class MyPageController {
 
 	}
 
-	
-	/** 회원정보 수정
-	 * @param inputMember  : 커맨드 객체 (@modelAttribute 생략된 상태 ) 제출된 회원 닉네임 , 전화번호 , 주소
-	 * @param loginMember  : 로그인한 회원 정보 (회원번호 사용할 예정 )
-	 * @param memberAddress : 주소만 따로 받은 string[] 
-	 * @param ra : 리다이렉트시 request scope로 message같은 데이터 전달 
+	/**
+	 * 회원정보 수정
+	 * 
+	 * @param inputMember   : 커맨드 객체 (@modelAttribute 생략된 상태 ) 제출된 회원 닉네임 , 전화번호 ,
+	 *                      주소
+	 * @param loginMember   : 로그인한 회원 정보 (회원번호 사용할 예정 )
+	 * @param memberAddress : 주소만 따로 받은 string[]
+	 * @param ra            : 리다이렉트시 request scope로 message같은 데이터 전달
 	 * @return
 	 */
+	
+	
+	
+	
 	@PostMapping("info")
-	public String updateInfo(Member inputMember,
-							@SessionAttribute("loginMember") Member loginMember,
-							@RequestParam("memberAddress") String[] memberAddress,
-							RedirectAttributes ra) {
-		
-		//inputMember 에 로그인한 회원 번호 추가 
+	public String updateInfo(Member inputMember, @SessionAttribute("loginMember") Member loginMember,
+			@RequestParam("memberAddress") String[] memberAddress, RedirectAttributes ra) {
+
+		// inputMember 에 로그인한 회원 번호 추가
 		inputMember.setMemberNo(loginMember.getMemberNo());
-		// 회원의 닉네임 전화번호 주소 회원번호 
-		
-		// 회원정보 수정 서비스 호출 
-		int result=service.updateInfo(inputMember,memberAddress);
-		
-		String message =null;
-		
-		if(result>0) {
-			message="회원정보 수정 성공!!";
-			
-			// loginMember 새로 세팅 
-			// 우리가 방금 바꾼 값으로 세팅 
-			// -> 세션에 저장된 로그인한 회원정보가 저장된 객체를 참고하고 있다. 
-			
-			//loginMember는 세션에 저장된 로그인한 회원 정보가 저장된 객체를 참조하고 있다. 
-			
-			//->loginMember수정하면 
-			// 세션에 저장된 로그인한 회원 정보가 수정된다. 
-			
-			// == 세션 데이터와 DB데이터를 맞춤 
-			
+		// 회원의 닉네임 전화번호 주소 회원번호
+
+		// 회원정보 수정 서비스 호출
+		int result = service.updateInfo(inputMember, memberAddress);
+
+		String message = null;
+
+		if (result > 0) {
+			message = "회원정보 수정 성공!!";
+
+			// loginMember 새로 세팅
+			// 우리가 방금 바꾼 값으로 세팅
+			// -> 세션에 저장된 로그인한 회원정보가 저장된 객체를 참고하고 있다.
+
+			// loginMember는 세션에 저장된 로그인한 회원 정보가 저장된 객체를 참조하고 있다.
+
+			// ->loginMember수정하면
+			// 세션에 저장된 로그인한 회원 정보가 수정된다.
+
+			// == 세션 데이터와 DB데이터를 맞춤
+
 			loginMember.setMemberNickname(inputMember.getMemberNickname());
-			
+
 			loginMember.setMemberTel(inputMember.getMemberTel());
-			
+
 			loginMember.setMemberAddress(inputMember.getMemberAddress());
-			
-			
-		}else {
-			message="회원 정보 수정 실패 ";
+
+		} else {
+			message = "회원 정보 수정 실패 ";
 		}
-		ra.addFlashAttribute("message",message);
-		
-		
+		ra.addFlashAttribute("message", message);
+
 		return "redirect:info";
 	}
 
@@ -118,13 +146,124 @@ public class MyPageController {
 
 	}
 
+	// 비밀번호 변경 화면 이동
+		@GetMapping("changePw") //   /myPage/changePw  GET 방식 요청
+		public String changePw() {
+			return "myPage/myPage-changePw";
+		}
+	
+	
+	
+	
 	// 비밀번호 변경
-	@GetMapping("changePw")
-	public String changePw() {
+	/**
+	 * @param paramMap : 모든 파라미터를 맵으로 저장  ( 비밀번호 , 현재비밀번호 , 
+	 * @param loginMember : 세션에 등록된 현재 로그인한 회원의 정보
+	 * @param ra     ra:리다이렉트시 request scope로 메시지 전달 역할 
+	 * @return
+	 */
+	@PostMapping("changePw") // /myPage/changePw post 매칭 요청 
+	//파라미터 묶어서 받아오기 
+	public String changePw(@RequestParam Map<String, Object> paramMap,
+			//				세션에 로그인한 정보가져오기 
+							@SessionAttribute("loginMember") Member loginMember,
+			// 				리다이렉트 메세지 
+							RedirectAttributes ra
+			) {
 
-		return "myPage/myPage-changePw";
+	log.debug("paramMap"+ paramMap);
+	log.debug("loginMember"+ loginMember);
+	
+	//로그인한 회원 번호 
+	int memberNo = loginMember.getMemberNo();
+		
+	//현재(paramMap) + 새(paramMap) + 회원 번호를 서비스로 전달 
+	int result =service.changePw(paramMap,memberNo);
+		
+	
+	String path=null;
+	String message = null;
+	
+	if(result > 0) {
+		//변경 성공 시 
+		// 메세지 비밀번호 변경되었습니다.
+		// 리다이렉트 /myPage/info
+		message="비밀번호 변경";
+		path ="/myPage/info";
+		
+	
+		
+	}else {
+		//변경 성공 시 
+				// 메세지 비밀번호 변경되었습니다.
+				// 리다이렉트 /myPage/info
+				message="현재비밀번호가 일치하지 않습니다.";
+				path ="/myPage/changePw";
+			
+		
+	}
+		
+	ra.addFlashAttribute("message",message);
+	
+		
+		return "redirect:"+path;
 	}
 
+
+	
+	/** 회원 탈퇴 
+	 * @param memberPw : 입력받은 비밀번호 
+	 * @param loginMember : 로그인한 회원 정보 (세션) 
+	 * @param status :세션 완료 용도의 객체 
+	 * 		-> @sessionAttributes 로 지정된 특정 속성을 세션에서 제거 기능 제공 객체 
+	 * @return
+	 */
+	@PostMapping("secession")
+	public String secession( @RequestParam("memberPw") String memberPw,
+							@SessionAttribute("loginMember") Member loginMember,
+							//세션지울때 (로그아웃) 
+							SessionStatus status ,
+							RedirectAttributes ra ) {
+
+		
+		//로그인한 회원의 회원번호 꺼내기 
+		int memberNo =loginMember.getMemberNo();
+		
+		//서비스 호출 ( 입력받은 비밀번호 , 로그인한 회원번호 ) 
+		int result =service.secession(memberPw,memberNo);
+		
+		String message = null;
+		String path =null;
+		
+		if(result >0) {
+			message ="탈퇴 되었습니다.";
+			path="/";
+			
+			status.setComplete();//세션 완료 시킴 
+			
+			
+			
+		} else {
+			
+			message ="비밀번호가 일치하지 않습니다.";
+			path="secession";
+			
+			
+		}
+		
+		ra.addFlashAttribute("message+" ,message);
+		
+		// 탈퇴 성공 : redirect:/ (메인페이지 재요청) 
+		// 탈퇴 실패 - redirect:secession(상대경로)
+		// 				->myPage(secession)현재경로 
+		// 				->myPage(secession)(Get 요청)
+		return "redirect:"+path; 
+		
+	}
+	
+	
+	
+	
 	// 회원탈퇴
 	@GetMapping("secession")
 	public String secession() {
@@ -132,7 +271,7 @@ public class MyPageController {
 		return "myPage/myPage-secession";
 	}
 
-	// 파일테스트
+	// 파일업로드 
 	@GetMapping("fileTest")
 	public String fileTest() {
 
@@ -144,5 +283,53 @@ public class MyPageController {
 
 		return "myPage/myPage-fileList";
 	}
+	
+	/*
+	 * Spring 에서 파일 업로드를 처리하는 방법 
+	 * 
+	 * - encType ="multiPart/form-data"로 클라이언트 요청을 받으면 
+	 * (문자 , 숫자 , 파일 등이 섞여있는 요청)
+	 * 
+	 * 
+	 * 이를 MultipartResolver(FileConfig에 정의)를 이용해서 섞여있는 파라미터를 분리
+	 * 
+	 * 문자열, 숫자 ->String 
+	 * 파일         -> MultipartFile
+	 * 
+	 * 
+	 * 
+	 * 
+	 * 
+	 * */
+	
+	
+	
 
+	/**파일테스트 1
+	 * @param uploadFile : 업로드한 파일 + 파일에 대한 내용 및 설정 내용 
+	 * @return 
+	 */
+	@PostMapping("file/test1") // /myPage/file/test1 POST 요청 매핑 
+	public String fileUpload1(
+			@RequestParam("uploadFile") MultipartFile uploadFile,
+			RedirectAttributes ra
+			) throws Exception{
+		
+		String path =service.fileUpload1(uploadFile);
+		
+		//파일이 저장되어 웹에서 접근할수 있는 경로가 반환되었을떄 
+		if(path !=null) {
+			ra.addFlashAttribute("path",path);
+			// addAttribute는 값을 지속적으로 사용해야할때 addFlashAttribute는
+			//일회성으로 사용해야할때 사용해야합니다.
+			
+			
+		}
+		
+		
+		return"redirect:/myPage/fileTest";
+		//redirect는  :/myPage/fileTest 이경로로 get요청 
+	}
+	
+	
 }
