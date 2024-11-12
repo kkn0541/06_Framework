@@ -2,13 +2,13 @@
 
 function execDaumPostcode() {
     new daum.Postcode({
-        oncomplete: function(data) {
+        oncomplete: function (data) {
             // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
             // 각 주소의 노출 규칙에 따라 주소를 조합한다.
             // 내려오는 변수가 값이 없는 경우엔 공백('')값을 가지므로, 이를 참고하여 분기 한다.
             var addr = ''; // 주소 변수
-           
+
 
             //사용자가 선택한 주소 타입에 따라 해당 주소 값을 가져온다.
             if (data.userSelectedType === 'R') { // 사용자가 도로명 주소를 선택했을 경우
@@ -17,7 +17,7 @@ function execDaumPostcode() {
                 addr = data.jibunAddress;
             }
 
-          
+
             // 우편번호와 주소 정보를 해당 필드에 넣는다.
             document.getElementById('postcode').value = data.zonecode;
             document.getElementById("address").value = addr;
@@ -32,8 +32,8 @@ function execDaumPostcode() {
 //예외처리 해둔 부분 ! )
 const searchAddress = document.querySelector("#searchAddress");
 
-if(searchAddress !=null){ // 화면상에 id가 
-    searchAddress.addEventListener("click",execDaumPostcode);
+if (searchAddress != null) { // 화면상에 id가 
+    searchAddress.addEventListener("click", execDaumPostcode);
 
 }
 
@@ -46,7 +46,7 @@ if(searchAddress !=null){ // 화면상에 id가
 const updateInfo = document.querySelector("#updateInfo"); // form 태그
 
 // #updateInfo 요소가 존재 할 때만 수행
-if(updateInfo != null) {
+if (updateInfo != null) {
 
     // form 제출 시
     updateInfo.addEventListener("submit", async (e) => {
@@ -61,30 +61,30 @@ if(updateInfo != null) {
         const memberAddress = document.querySelectorAll("[name='memberAddress']");
 
         // 닉네임 유효성 검사
-        if(memberNickname.value.trim().length === 0) {
+        if (memberNickname.value.trim().length === 0) {
             alert("닉네임을 입력해주세요");
-          //  e.preventDefault(); // 제출 막기
+            //  e.preventDefault(); // 제출 막기
             return;
         }
 
         // 닉네임 정규식에 맞지 않으면
         let regExp = /^[가-힣\w\d]{2,10}$/;
-        if( !regExp.test(memberNickname.value)) {
+        if (!regExp.test(memberNickname.value)) {
             alert("닉네임이 유효하지 않습니다.");
-          //  e.preventDefault(); // 제출 막기
+            //  e.preventDefault(); // 제출 막기
             return;
         }
 
         // *********** 닉네임 중복검사는 개별적으로 해보기 ***********
-        
+
         // 기존 닉네임이 저장되어있는 요소의 value 값 얻어와 저장된 변수 currentNickname 
         const currentNickname = document.querySelector("#currentNickname").value;
 
         //기존 닉네임과 새로 입력된 닉네임이 다르면 중복검사 시도하기 
         // ->같으면 변경된적 없다. -> 중복검사 진행 안함 
-        
+
         //      기존닉네임          변경닉네임 
-        if(currentNickname !== memberNickname.value) {
+        if (currentNickname !== memberNickname.value) {
 
             //비동기 요청 (fetch () API 이용)
             // async /await 사용 
@@ -92,26 +92,26 @@ if(updateInfo != null) {
             //await :비동기 작업의 결과를 기다릴때 사용 -> !!! 반드시 async 함수안에서만 사용 가능 
             //          -> "이작업이 끝날떄까지 기다려주세요. "
 
-            const resp = await fetch("/member/checkNickname?memberNickname="+memberNickname.value);
-            const count =await resp.text();
+            const resp = await fetch("/member/checkNickname?memberNickname=" + memberNickname.value);
+            const count = await resp.text();
 
-            if(count ==1){
+            if (count == 1) {
                 alert("이미 사용중인 닉네임입니다.");
-             //   e.preventDefault();
+                //   e.preventDefault();
                 return;
             }
 
         }
-        
 
 
 
-        
-        
-        
-        
+
+
+
+
+
         // ***********************************************************
-        
+
         /*
         fetch("/member/checkNickname?memberNickname="+memberNickname.value)
         .then(resp => resp.text())
@@ -128,22 +128,22 @@ if(updateInfo != null) {
 
 
 
-		
-		
-		
-		
-		
+
+
+
+
+
         // 전화번호 유효성 검사
-        if(memberTel.value.trim().length === 0) {
-         //   alert("전화번호를 입력해 주세요");
+        if (memberTel.value.trim().length === 0) {
+            //   alert("전화번호를 입력해 주세요");
             e.preventDefault();
             return;
         }
 
         // 전화번호 정규식에 맞지 않으면
         regExp = /^01[0-9]{1}[0-9]{3,4}[0-9]{4}$/;
-        if( !regExp.test(memberTel.value)) {
-          //  alert("전화번호가 유효하지 않습니다");
+        if (!regExp.test(memberTel.value)) {
+            //  alert("전화번호가 유효하지 않습니다");
             e.preventDefault();
             return;
         }
@@ -164,8 +164,8 @@ if(updateInfo != null) {
         const result2 = !(addr0 || addr1 || addr2); // 모두 다 입력
 
         // 모두 입력 또는 모두 미입력이 아니면
-        if( !(result1 || result2) ) {
-          //  alert("주소를 모두 작성 또는 미작성 해주세요");
+        if (!(result1 || result2)) {
+            //  alert("주소를 모두 작성 또는 미작성 해주세요");
             e.preventDefault();
             return;
         }
@@ -186,7 +186,7 @@ if(updateInfo != null) {
 // 비밀번호 변경 form 태그
 const changePw = document.querySelector("#changePw");
 
-if(changePw != null) {
+if (changePw != null) {
     // 제출 되었을 때
     changePw.addEventListener("submit", e => {
 
@@ -197,11 +197,11 @@ if(changePw != null) {
         // - 값을 모두 입력했는가
 
         let str; // undefined 상태
-        if( currentPw.value.trim().length == 0 ) str = "현재 비밀번호를 입력해주세요";
-        else if( newPw.value.trim().length == 0 ) str = "새 비밀번호를 입력해주세요";
-        else if( newPwConfirm.value.trim().length == 0 ) str = "새 비밀번호 확인을 입력해주세요";
+        if (currentPw.value.trim().length == 0) str = "현재 비밀번호를 입력해주세요";
+        else if (newPw.value.trim().length == 0) str = "새 비밀번호를 입력해주세요";
+        else if (newPwConfirm.value.trim().length == 0) str = "새 비밀번호 확인을 입력해주세요";
 
-        if(str != undefined) { // str에 값이 대입됨 == if 중 하나 실행됨
+        if (str != undefined) { // str에 값이 대입됨 == if 중 하나 실행됨
             alert(str);
             e.preventDefault();
             return;
@@ -210,18 +210,18 @@ if(changePw != null) {
         // 새 비밀번호 정규식
         const regExp = /^[a-zA-Z0-9!@#_-]{6,20}$/;
 
-        if( !regExp.test(newPw.value) ) {
+        if (!regExp.test(newPw.value)) {
             alert("새 비밀번호가 유효하지 않습니다");
             e.preventDefault();
             return;
         }
 
         // 새 비밀번호 == 새 비밀번호 확인
-        if( newPw.value != newPwConfirm.value ) {
+        if (newPw.value != newPwConfirm.value) {
             alert("새 비밀번호가 일치하지 않습니다");
             e.preventDefault();
             return;
-        } 
+        }
     });
 };
 
@@ -231,7 +231,7 @@ if(changePw != null) {
 // 탈퇴 form 태그
 const secession = document.querySelector("#secession");
 
-if(secession != null) {
+if (secession != null) {
 
     secession.addEventListener("submit", e => {
 
@@ -239,7 +239,7 @@ if(secession != null) {
         const agree = document.querySelector("#agree");
 
         // - 비밀번호 입력 되었는지 확인
-        if(memberPw.value.trim().length == 0) {
+        if (memberPw.value.trim().length == 0) {
             alert("비밀번호를 입력해주세요.");
             e.preventDefault(); // 제출막기
             return;
@@ -249,14 +249,14 @@ if(secession != null) {
         // checkbox 또는 radio checked 속성
         // - checked -> 체크 시 true, 미체크시 false 반환
 
-        if(!agree.checked) { // 체크 안됐을 때
+        if (!agree.checked) { // 체크 안됐을 때
             alert("약관에 동의해주세요");
             e.preventDefault();
             return;
         }
 
         // 정말 탈퇴? 물어보기
-        if( !confirm("정말 탈퇴 하시겠습니까?") ) {
+        if (!confirm("정말 탈퇴 하시겠습니까?")) {
             alert("취소 되었습니다.");
             e.preventDefault();
             return;
@@ -285,5 +285,118 @@ const profileForm = document.getElementById("profile");  // 프로필 form
 const profileImg = document.getElementById("profileImg");  // 미리보기 이미지 img
 const imageInput = document.getElementById("imageInput");  // 이미지 파일 선택 input
 const deleteImage = document.getElementById("deleteImage");  // 이미지 삭제 버튼
-const MAX_SIZE = 1024 * 1024 * 5;  // 최대 파일 크기 설정 (5MB)
+const MAX_SIZE = 1024 * 1024 * 5;  // 최대 파일 크기 설정 (5MB) ->바이트 단위 
+// 1024B == 1kb 
+// 1024kb ==1MB
+
+const defaultImageUrl = `${window.location.origin}/images/user.png`;
+// 절대 경로로 기본 이미지 URL 설정 
+// -> http ://localhost/images/user.png
+
+let statusCheck = -1;  // -1 이면 초기상태 , 0 : 이미지 삭제, 1: 새 이미지 선택
+let previousImage = profileImg.scr; // 이전이미지 URL 기록 (초기 상태의 이미지 URL저장)
+let previousFile = null; //이전에 선택된 파일 객체를 저장 //들어갈 실제 파일 객체 
+
+//이미지 선택 시 미리 보기 및 파일 크키 검사 
+imageInput.addEventListener("change", () => {
+    //impageinput이 달라졌다 했을떄 발생하는 이벤트 
+    //change 이벤트 : 기존에 있던 값과 달라지면 change 이벤트 일어남 
+
+    //console.log(imageInput.files); FileList(input 태그는 FileList로 저장 )
+
+
+    const file = imageInput.files[0]; //선택한 FILE객체 가져오기 
+
+    if (file) { // 파일이 선택된 경우 
+        if (file.size <= MAX_SIZE) { //파일 크기가 허용범위 이내인 경우
+            const newImageUrl = URL.createObjectURL(file); //임시 URL 생성 
+            //blob:http//localhost /임시 url 용도 
+            profileImg.src = newImageUrl; //미리보기 이미지 설정 (img 태그에 src 선택한 파일 임시 경로 대입)
+            statusCheck = 1; //새 이미지 선택상태 기록 
+            previousImage = newImageUrl; //현재 선택된 이미지를 이전 이미지로 저장 (다음에 바뀔일에 대비)
+            previousFile = file;// 현재 선택된 파일 객체를 이전 파일로 저장 (다음에 바뀔일에 대비)
+
+            //input file이 우리가 최종적으로 제출해야하는것 
+
+
+
+        } else { //파일크기가 허용범위를 초과한 경우 
+
+            alert("5MB이하의 이미지를 선택해주세욥!");
+            imageInput.value = ""; //파일 선택 초기화 
+            //(ALERT 창은 띄웠지만 이미 선택된 큰 사이즈 파일을 비우는건 따로 해야함)
+            //==imgInput.flles=null;
+            profileImg.src = previousImage; // 2. 이전 미리보기 이미지로 복원 
+            //3. 파일 입력 복구   : 이전 파일이 존재하면 다시 할당  
+            //img src 와 input files 따로생각해야함 
+            if (previousFile) {
+                const dataTransfer = new DataTransfer();
+                //DataTransfer : 자바 스크립트로 파일을 조작할때 사용되는 인터페이스 
+                //
+                //  DataTransfer.items.add(); 파일 추가 
+                //  DataTransfer.items.remove(); 파일 제거
+                //  DataTransfer.files :FileList 객체를 반환
+                //  -> <input type="file"> 요소에 파일을 동적으로 설정 가능 
+                //  --> input 태그의 files 속성은 FileList 만 저장 가능하기 떄문에 
+                //  DataTransfer 를 이용하여 현재 File 객체를 FileList변환하여 할당 
+                dataTransfer.items.add(previousFile);
+                // 이전 파일을 추가해두기 : DataTransfer 에 File 객체를 추가 
+                imageInput.files = dataTransfer.files;
+                // 이전 파일로 input 요소의 files 속성을 복구 : DataTransfer에 저장된 
+                // 파일의 리스트를 FileList 객체로 반환 
+
+              
+                //눈에보여지는 img 
+                // 실제 서버에 전송되야하는 input files
+
+
+            }
+        }
+
+
+    } else { //파일 선택이 취소된 경우 
+        profileImg.src= previousImage; //이전 미리보기 이미지로 복원 
+
+        //파일 입력 복구 :이전 파일이 존재하면 다시 할당 
+        if(previousFile){
+            const dataTransfer = new DataTransfer();
+            dataTransfer.items.add(previousFile);
+            imageInput.files=dataTransfer.files; //이전 파일로 input 태그의 files 속성 복구 
+        }
+
+
+
+    }
+
+});
+
+// 이미지 삭제 버튼 클릭 시 
+deleteImage.addEventListener("click",() =>{
+    // 기본 이미지 상태가 아니면 삭제 처리 
+
+    if(profileImg.src !==defaultImageUrl){
+        imageInput.value =""; //파일 선택 초기화 
+        profileImg.src=defaultImageUrl; //기본 이미지로 설정 
+        statusCheck=0; //이미지 삭제 상태 기록 
+        previousFile =null ; // 이전 파일 초기화 기록 
+    }else{
+        // 기본이미지 상태에서 삭제 버튼 클릭 시 상태를 변경하지 않음 
+        statusCheck = -1; //변경사항 없음 상태 유지 
+
+
+    }
+
+});
+
+
+// 폼 제출 시 유효성 검사 
+profileForm.addEventListener("submit",e =>{
+    if(statusCheck === -1){ //변경 사항이 없는 경우 제출막기 
+        e.preventDefault();
+        alert("이미지 변경 후 제춯하세요 ");
+    }
+
+});
+
+
 
