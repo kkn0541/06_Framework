@@ -1,5 +1,7 @@
 package edu.kh.project.common.config;
 
+import java.rmi.registry.Registry;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.servlet.MultipartConfigFactory;
 import org.springframework.context.annotation.Bean;
@@ -48,7 +50,15 @@ public class FileConfig implements WebMvcConfigurer {
 	@Value("${my.profile.resource-location}")
 	private String profileResourceLocation;
 	
+	//-0------------------
 	
+	@Value("${my.board.resource-handler}")
+	private String boardResourceHandler;
+	
+	@Value("${my.board.resource-location}")
+	private String boardResourceLoacation;
+
+
 	
 	
 	
@@ -75,9 +85,15 @@ public class FileConfig implements WebMvcConfigurer {
 		registry.addResourceHandler(profileResourceHandler) //myPage/profile/**
 		.addResourceLocations(profileResourceLocation); //file :///C:/upLoadfiles/profile
 		
-	
+
+		registry
+		.addResourceHandler(boardResourceHandler)
+		.addResourceLocations(boardResourceLoacation);
+		
+		
 	}
 	
+
 	
 	
 	

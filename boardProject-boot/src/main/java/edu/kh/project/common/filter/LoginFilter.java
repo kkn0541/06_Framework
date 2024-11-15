@@ -39,6 +39,22 @@ public class LoginFilter implements Filter {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpServletResponse resp = (HttpServletResponse) response;
 		
+		// 현재 요청의 URI 를 가져옴 
+		// /board1/2001?cp=1
+		String path = req.getRequestURI();
+		
+		// 요청 URI 가 "/myPage/profile/" 로 시작하는지 확인 
+		if(path.startsWith("/myPage/profile/")) {
+			chain.doFilter(request, response);
+			// 필터를 통과하도록 함 
+			chain.doFilter(request, response);
+			// 필터를 통과한 후 아래 코드 수행하지 않도록 return 
+			return ; 
+		}
+		
+		
+		
+		
 		//Session 얻어오기 
 		HttpSession session = req.getSession();
 		

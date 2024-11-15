@@ -1,3 +1,51 @@
+const tbody = document.querySelector("#memberList");
+const selectbtn= document.querySelector("#selectMemberList");
+
+
+
+  const memberList = () => {
+    fetch("/board/memberList")
+      .then(response => response.json())
+      .then(memberList => {
+
+        console.log(memberList);
+
+        tbody.innerHTML = ""; //초기화
+
+        for (let mem of memberList) {
+
+          const tr = document.createElement("tr");
+          const arr = ['memberNo', 'memberNickname', 'memberEmail', 'memberDelFl'];
+
+          for (let key of arr) {
+            const td = document.createElement("td");
+
+            if (key === 'memberNo') {
+              tr.append(td);
+            }
+
+            td.innerText = mem[key];
+            tr.append(td);
+          }
+          tbody.append(tr);
+
+        }
+
+
+
+
+
+
+      });
+
+  }
+
+
+  selectbtn.addEventListener("click", () => {
+    memberList();
+});
+
+
 //console.log("main.js loaded.");
 
 //쿠키에 저장된 이메일 input 창에 뿌려놓기 
