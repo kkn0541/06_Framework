@@ -5,6 +5,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -192,6 +194,19 @@ public class MemberController {
 	}
 	
 	
+	// 회원 비밀번호 초기화(pass01!)(비동기)
+	@ResponseBody
+	@PutMapping("resetPw")
+	public int resetPw(@RequestBody int inputNo) {
+		return service.resetPw(inputNo);
+	}
+	
+	// 회원 탈퇴 복구(비동기)
+	@ResponseBody
+	@PutMapping("restoreMember")
+	public int restoreMember(@RequestBody int inputNo) {
+		return service.restoreMember(inputNo);
+	}
 	
 	
 	

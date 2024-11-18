@@ -2,7 +2,7 @@ const tbody = document.querySelector("#memberList");
 const selectbtn= document.querySelector("#selectMemberList");
 
 
-
+ selectbtn.addEventListener("click", () => {
   const memberList = () => {
     fetch("/board/memberList")
       .then(response => response.json())
@@ -41,7 +41,7 @@ const selectbtn= document.querySelector("#selectMemberList");
   }
 
 
-  selectbtn.addEventListener("click", () => {
+ 
     memberList();
 });
 

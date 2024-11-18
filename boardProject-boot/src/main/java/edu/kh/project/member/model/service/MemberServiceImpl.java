@@ -122,4 +122,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 	}
+
+	@Override
+	public int resetPw(int inputNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int restoreMember(int inputNo) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
 }

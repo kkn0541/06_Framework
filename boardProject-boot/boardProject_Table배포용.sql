@@ -694,8 +694,10 @@ ORDER SIBLINGS BY COMMENT_NO  -- SIBLINGS- 같은 레벨
 
 
 
+SELECT * FROM "MEMBER";
 
-
+SELECT MEMBER_NO,MEMBER_NICKNAME,MEMBER_DEL_FL
+FROM "MEMBER";
 
 
 
@@ -708,6 +710,20 @@ VALUES(1, 1998); -- 1번 회원이 1998번 글에 좋아요를 클릭함
 COMMIT;
 
 ----------------------------------------------------------
+
+INSERT INTO "BOARD_IMG" 
+(
+SELECT NEXT_IMG_NO(),'경로1','원본1','변경1',1,2001 FROM DUAL
+UNION
+SELECT NEXT_IMG_NO(),'경로2','원본2','변경2',2,2001 FROM DUAL
+UNION
+SELECT NEXT_IMG_NO(),'경로3','원본3','변경3',3,2001 FROM DUAL
+); 
+
+
+
+
+
 
 -- SEQ_IMG_NO 시퀀스의 다음 값을 반환하는 함수 생성
 
@@ -725,6 +741,8 @@ BEGIN
 	RETURN IMG_NO;
 END;
 -- 여기까지 긁기
+
+SELECT NEXT_IMG_NO() FROM DUAL;
 
 
 
