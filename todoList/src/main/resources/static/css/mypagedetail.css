@@ -1,0 +1,105 @@
+/* Detail table styles */
+.detail-container {
+    margin: 2rem 0;
+}
+
+.detail-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-top: 2px solid #ff7f50;
+}
+
+.detail-table th,
+.detail-table td {
+    padding: 1rem;
+    border: 1px solid #ddd;
+}
+.images {
+    width: 200px;
+    height: 200px;
+}
+
+.detail-table th {
+    background-color: #fafafa;
+    width: 120px;
+    font-weight: bold;
+    color: #333;
+}
+
+.content-cell {
+    min-height: 200px;
+    vertical-align: top;
+}
+
+/* Form styles */
+input, textarea {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+
+/* Sidebar styles */
+.sidebar {
+    width: 250px;
+}
+
+.sidebar-menu {
+    background-color: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    position: absolute;
+    right: 0px;
+}
+
+.sidebar-menu h2 {
+    color: #333;
+    margin-bottom: 1rem;
+}
+
+.menu-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.menu-item.active {
+    background-color: #ff7f50;
+    color: white;
+}
+
+/* Button styles */
+.button-container {
+    margin-top: 2rem;
+    text-align: right;
+}
+
+.list-btn {
+    background-color: #f0f0f0;
+    border: none;
+    padding: 0.5rem 1.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* Footer styles */
+footer {
+    background-color: #333;
+    color: white;
+    padding: 2rem;
+    margin-top: 3rem;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}

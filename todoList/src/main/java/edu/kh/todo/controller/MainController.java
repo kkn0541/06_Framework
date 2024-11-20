@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import edu.kh.todo.model.dto.Todo;
@@ -63,4 +64,106 @@ public class MainController {
 		
 	}
 	
+	@GetMapping("qnadetail")
+	public String qnadetail() {
+		
+		return "common/qnadetail";
+	}
+	@GetMapping("often")
+	public String oftenqna() {
+		
+		return "common/oftenqna";
+	}
+
+	@GetMapping("signup")
+	public String signup() {
+		
+		return "common/signup";
+	}
+	
+	
+	@GetMapping("signup8")
+	public String signup8() {
+		
+		return "common/signup8";
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	
+	@GetMapping("login")
+	public String loginpopup() {
+		
+		return "common/login";
+	}
+	
+
+	@GetMapping("oftenqnadetail")
+	public String oftenqnadetail() {
+		
+		return "common/oftenqnadetail";
+	}
+	
+	@GetMapping("adoptmain")
+	public String adoptmain() {
+		
+		return "common/adoptmain";
+	}
+	
+	@GetMapping("aboutus")
+	public String aboutus() {
+		
+		return "common/aboutus";
+	}
+	@GetMapping("mainhtml")
+	public String mainhtml() {
+		
+		return "common/mainhtml";
+	}
+	
+	
+	@GetMapping("mainmenu")
+	public String mainmenu() {
+		
+		return "common/mainmenu";
+	}
+	
+	@GetMapping("oftenqnadetail2")
+	public String oftenqnadetail2() {
+		
+		return "common/oftenqnadetail2";
+	}
+	@GetMapping("mypagelist")
+	public String mypagelist() {
+		
+		return "common/mypagelist";
+	}
+	@GetMapping("mypagelist4")
+	public String mypagelist2() {
+		
+		return "common/mypagelist4";
+	}
+	
+	@GetMapping("teamintro")
+	public String teamintro() {
+		
+		return "common/teamintro";
+	}
+
+	@GetMapping("mypagedetail")
+	public String mypagedetail() {
+		
+		return "common/mypagedetail";
+	}
+	@GetMapping("mainadopt")
+	public String mainadopt() {
+		
+		return "common/mainadopt";
+	}
+
 }

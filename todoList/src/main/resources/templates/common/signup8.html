@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원가입</title>
+    <link rel="stylesheet" href="/css/signup8.css">
+</head>
+<body>
+    <div class="container">
+        <form class="signup-form">
+            <h2>회원가입</h2>
+            
+            <div class="form-section">
+                <h3>기업정보</h3>
+                
+                <div class="form-group">
+                    <label for="email">이메일</label>
+                    <div class="input-button-group">
+                        <input type="email" id="email" required>
+                        <button type="button" class="btn-verify">인증</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="verification">인증번호</label>
+                    <div class="input-button-group">
+                        <input type="text" id="verification" required>
+                        <button type="button" class="btn-confirm">인증확인</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">비밀번호</label>
+                    <input type="password" id="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password-confirm">비밀번호 확인</label>
+                    <input type="password" id="password-confirm" required>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>기본정보</h3>
+                
+                <div class="form-group">
+                    <label for="name">이름</label>
+                    <input type="text" id="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">연락처</label>
+                    <input type="tel" id="contact" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="address">주소</label>
+                    <div class="input-button-group">
+                        <input type="text" id="address" required>
+                        <button type="button" class="btn-search">검색</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>성별</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="male">
+                            <span>남성</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="gender" value="female">
+                            <span>여성</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>구분</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="type" value="member">
+                            <span>회원가입</span>
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="type" value="withdrawal">
+                            <span>취소</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit" class="btn-submit">가입하기</button>
+                <button type="reset" class="btn-reset">초기화</button>
+            </div>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; 2024 회사명. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#">이용약관</a>
+                <a href="#">개인정보처리방침</a>
+                <a href="#">고객센터</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자주하는 질문</title>
+    <link rel="stylesheet" href="/css/qna2.css">
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+    <div class="layout">
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-container">
+                    <div class="header-content">
+                        <!-- Logo -->
+						<div class="logo">
+							<img src="/images/코지펫로고.png" alt="CozyPet Logo" class="images">
+						</div>
+                        
+                        <!-- Header buttons -->
+                        <div class="header-buttons">
+                            <button class="login-btn">로그인</button>
+                            <button class="mypage-btn">
+                                <i data-lucide="user-circle"></i>
+                                마이페이지
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Main content -->
+            <div class="container">
+                <div class="content-box">
+                    <!-- Title -->
+                    <h1 class="main-title">자주하는 질문</h1>
+                    
+                    <!-- Search section -->
+                    <div class="search-section">
+                        <div class="search-container">
+                            <div class="checkbox-group">
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span>제목</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span>내용</span>
+                                </label>
+                                <label class="checkbox-label">
+                                    <input type="checkbox" class="checkbox">
+                                    <span>글쓴이</span>
+                                </label>
+                            </div>
+                            <div class="search-input-container">
+                                <input 
+                                    type="text" 
+                                    placeholder="검색어를 입력하세요" 
+                                    class="search-input"
+                                >
+                                <i data-lucide="search" class="search-icon"></i>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Table -->
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>번호</th>
+                                <th>제목</th>
+                                <th>글쓴이</th>
+                                <th>추천수</th>
+                                <th>등록일</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>글쓴이</td>
+                                <td>추천수</td>
+                                <td>등록일</td>
+                            </tr>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>글쓴이</td>
+                                <td>추천수</td>
+                                <td>등록일</td>
+                            </tr>
+                            <tr>
+                                <td>번호</td>
+                                <td>제목</td>
+                                <td>글쓴이</td>
+                                <td>추천수</td>
+                                <td>등록일</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <!-- Pagination -->
+                    <div class="pagination">
+                        <button>1</button>
+                        <button>→</button>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="sidebar">
+                    <div class="sidebar-content">
+                        <h2 class="sidebar-title">고객센터</h2>
+                        <nav class="sidebar-nav">
+                            <a href="#" class="sidebar-link">자주하는 질문</a>
+                            <a href="#" class="sidebar-link">질문과 답변</a>
+                        </nav>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <div style="height: 500px; border: none;"
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+    </script>
+</body>
+</html>

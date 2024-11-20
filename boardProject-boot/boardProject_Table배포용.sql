@@ -705,9 +705,15 @@ FROM "MEMBER";
 
 /* 좋아요 테이블(BOARD_LIKE) 샘플 데이터 추가 */
 INSERT INTO "BOARD_LIKE"
-VALUES(1, 1998); -- 1번 회원이 1998번 글에 좋아요를 클릭함
+VALUES(2, 2007); -- 1번 회원이 1998번 글에 좋아요를 클릭함
 
 COMMIT;
+
+SELECT COUNT(*) FROM "BOARD_LIKE"
+WHER MEMBER_NO=2
+AND BOARD_NO =
+
+
 
 ----------------------------------------------------------
 
@@ -718,7 +724,9 @@ UNION
 SELECT NEXT_IMG_NO(),'경로2','원본2','변경2',2,2001 FROM DUAL
 UNION
 SELECT NEXT_IMG_NO(),'경로3','원본3','변경3',3,2001 FROM DUAL
-); 
+);
+
+SELECT * FROM"BOARD_IMG";
 
 
 

@@ -13,6 +13,7 @@ import edu.kh.project.board.model.dto.PageNation;
 import edu.kh.project.board.model.mapper.BoardMapper;
 import edu.kh.project.member.model.dto.Member;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 
@@ -22,7 +23,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional(rollbackFor = Exception.class)
 @RequiredArgsConstructor
 
-
+@Slf4j
 public class BoardServiceImpl implements BoardService{
 
 	private final BoardMapper mapper;
@@ -68,7 +69,7 @@ public class BoardServiceImpl implements BoardService{
 		// -> 첫번째 매개변수 -> sql 에 전달할 파라미터 
 		// -> 두번째 매개변수 -> RowBounds 객체 전달 
 		List<Board> boardList = mapper.selectBoardList(boardCode,rowBounds);
-		
+		log.debug("boardList.get(0) : " + boardList.get(0));
 		
 		// 4. 목록조회 결과 +Pagination 객체를 Map으로 묶음 
 		Map<String, Object> map =new HashMap<>();
@@ -110,6 +111,50 @@ public class BoardServiceImpl implements BoardService{
 	public int resetPw(String resetMemberNo) {
 		// TODO Auto-generated method stub
 		return mapper.resetPw(resetMemberNo);
+	}
+
+	@Override
+	public int boardLike(Map<String, Integer> map) {
+
+		int result =0;
+		
+		// 1. 좋아요가 체크된 상태인 경우(likecheck ==1 ) 
+		// ->BOARD_LIKE 테이블에 DELETE 
+		if(map.get("likeCheck")==1) {
+			
+			result=mapper.deleteBoardLike(map); 
+			
+		}else {
+			//2. 좋아요가 해제된 상태인 경우(likecheck ==0 )
+			// -> BOARD_LIKE 테이블에 INSERT
+			
+			result = mapper.insertBoardLike(map);
+		}
+		
+		
+		//3 . 다시 해당 게시글의 좋아요 개수 조회해서 반환 
+		if(result>0 ) {
+			return mapper.selectLikeCount(map.get("boardNo"));
+		}
+		
+		
+		return -1;
+	}
+
+	//조회수 1증가 
+	@Override
+	public int updateReadCount(int boardNo) {
+
+		//1. 조회수 1 증가 (UPDATE)
+		int result =mapper.updateReadCount(boardNo);
+		
+		//2. 현재 조회수 조회 
+		if(result>0) {
+			return mapper.selectReadCount(boardNo); 
+		}
+		
+		//실패한 경우 -1반환 		
+		return -1;
 	}
 	
 }

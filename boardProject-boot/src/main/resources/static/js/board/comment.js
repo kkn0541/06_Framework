@@ -30,6 +30,7 @@ const selectCommentList = () => {
   // response.json() 
   // - 응답 받은 JSON 데이터 -> JS 객체로 변환
 
+  // boardNo는 boardDeatail 에 스크립트 부분 const boardNo 에서 가져옴 
   fetch("/comment?boardNo=" + boardNo) // GET 방식 요청
   .then(response => response.json())
   .then(commentList => {
@@ -111,7 +112,8 @@ const selectCommentList = () => {
         const childCommentBtn = document.createElement("button");
         childCommentBtn.innerText = "답글";
 
-        // 답글 버튼에 onclick 이벤트 리스너 추가 
+        // 답글 버튼에 onclick 이벤트 리스너 추가
+        // this 는  현재 childCommentBtn
         childCommentBtn.setAttribute("onclick", 
           `showInsertComment(${comment.commentNo}, this)`);     
           

@@ -12,6 +12,8 @@ const lastValidFiles = [null, null, null, null, null];
  * @param  file : <input type="file"> 에서 선택된 파일
  * @param  order : 이미지 순서
  */
+
+// 매개변수로 FILE ORDER를 받아서 
 const updatePreview = (file, order) => {
 
   // 선택된 파일이 지정된 크기를 초과한 경우 선택 막기
