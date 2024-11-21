@@ -3,156 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="/css/mainadopt.css">
     <title>Pet Adoption</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
-        }
-
-        body {
-            background-color: white;
-            padding: 40px 20px;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .header h1 {
-            font-size: 48px;
-            color: #FF7F50;
-            margin-bottom: 20px;
-            font-weight: 700;
-        }
-
-        .link-text {
-            display: inline-block;
-            padding: 8px 20px;
-            background-color: #fff;
-            border-radius: 20px;
-            color: #FF7F50;
-            font-size: 14px;
-            box-shadow: 0 2px 4px rgba(255,127,80,0.2);
-            margin-bottom: 40px;
-            transition: all 0.3s ease;
-        }
-
-        .link-text:hover {
-            background-color: #FF7F50;
-            color: white;
-        }
-
-        .pet-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            padding: 20px;
-        }
-
-        .pet-card {
-            background: white;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 4px 8px rgba(255,127,80,0.15);
-            transition: transform 0.3s ease;
-            border: 1px solid rgba(255,127,80,0.1);
-        }
-
-        .pet-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 6px 12px rgba(255,127,80,0.2);
-        }
-
-        .image-container {
-            width: 100%;
-            height: 250px;
-            background-color: rgba(255,127,80,0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .image-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #FF7F50;
-            font-size: 14px;
-        }
-
-        .pet-info {
-            padding: 20px;
-        }
-
-        .pet-name {
-            font-size: 18px;
-            color: #FF7F50;
-            margin-bottom: 15px;
-            padding: 8px 12px;
-            background-color: rgba(255,127,80,0.05);
-            border-radius: 6px;
-            font-weight: bold;
-        }
-
-        .info-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-top: 15px;
-        }
-
-        .info-item {
-            padding: 8px 12px;
-            background-color: rgba(255,127,80,0.05);
-            border-radius: 6px;
-            font-size: 14px;
-            color: #666;
-        }
-
-        .species {
-            padding: 8px 12px;
-            background-color: rgba(255,127,80,0.05);
-            border-radius: 6px;
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 10px;
-        }
-
-        @media (max-width: 768px) {
-            .pet-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .header h1 {
-                font-size: 36px;
-            }
-
-            body {
-                padding: 20px 10px;
-            }
-        }
-    </style>
+   
 </head>
 <body>
     <div class="container">
@@ -166,7 +19,7 @@
             <div class="pet-card">
                 <div class="image-container">
                     <div class="image-placeholder">
-                        이미지
+                        <img src="images/dog1.jpg">
                     </div>
                 </div>
                 <div class="pet-info">
@@ -183,8 +36,8 @@
             <div class="pet-card">
                 <div class="image-container">
                     <div class="image-placeholder">
-                        이미지
-                    </div>
+						<img src="images/dog2.jpg" >
+					</div>
                 </div>
                 <div class="pet-info">
                     <div class="pet-name">pet-name</div>
@@ -200,7 +53,7 @@
             <div class="pet-card">
                 <div class="image-container">
                     <div class="image-placeholder">
-                        이미지
+                       <img src="images/dog3.jpg" >
                     </div>
                 </div>
                 <div class="pet-info">

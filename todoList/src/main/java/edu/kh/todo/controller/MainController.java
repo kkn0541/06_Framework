@@ -165,5 +165,23 @@ public class MainController {
 		
 		return "common/mainadopt";
 	}
+	
+	@GetMapping("adoptintro")
+	public String adoptintro() {
+		
+		return "common/adoptintro";
+	}
+
+
+	@GetMapping("mainreviewadopt")
+	public String mainreviewadopt() {
+		
+		return "common/mainreviewadopt";
+	}
+	@GetMapping("aboutsemi")
+	public String aboutsemi() {
+		
+		return "common/aboutsemi";
+	}
 
 }
