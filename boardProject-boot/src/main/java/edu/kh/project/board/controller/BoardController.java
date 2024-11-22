@@ -70,16 +70,42 @@ public class BoardController {
 	 * @param boardCode :게시판 종류 구분 번호 (1/2/3..)
 	 * @param cp        :현재 조회 요청한 페이지 번호 ( 없으면 1 )
 	 * @param model
+	 * @param  paramMap(검색할때 추가) : 제출된 파라미터가 모두 지정된 Map(검색 시 ,key 와 query 담겨있음)
+	 * 							ex)	{key=t,query=짱구}
 	 * @return
 	 */
+	//원래는 게시글목록조회만 
+	//11/22  검색조건 추가 ( 파라미터 추가 @RequestParam Map<String, Object> paramMap)
 	@GetMapping("{boardCode:[0-9]+}")
 	public String selectBoardList(@PathVariable("boardCode") int boardCode,
-			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model) {
+			@RequestParam(value = "cp", required = false, defaultValue = "1") int cp, Model model,
+			@RequestParam Map<String, Object> paramMap
+			) {
 		// 조회 서비스 호출 후 결과 반환
 		Map<String, Object> map = null;
 
-		// 게시글 목록 조회 서비스 호출
-		map = service.selectBoardList(boardCode, cp);
+		//검색이 아닌 경우  --> paramaMap {}  이런형태로 넘어옴 
+		//아무것도 없으니까 
+		//param map의 key 
+		if(paramMap.get("key") == null) {
+
+			// 게시글 목록 조회 서비스 호출
+			map = service.selectBoardList(boardCode, cp);
+			
+		}else {
+			//검색인 경우      --> paramMap {key=t,query=짱구}
+			
+			//boardCode를 paramMap에 추가 
+			paramMap.put("boardCode", boardCode);
+			//-->paramMap {key=t,query=짱구, boradCode=1}
+			
+			//검색 서비스 호출 
+			map = service.searchList(paramMap,cp);
+			
+		}
+		
+		
+		
 
 		// model에 반환 받은 값을 등록
 		model.addAttribute("pagination", map.get("pagination"));

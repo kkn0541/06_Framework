@@ -214,4 +214,12 @@ public class EditboardServiceImpl implements EditBoardService {
 		return result;
 	}
 
+	@Override
+	public int boardDelete(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return mapper.boardDelete(map);
+	}
+
+
+
 }

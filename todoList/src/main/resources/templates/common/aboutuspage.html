@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #fff5f2;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 4rem;
+            background-color: white;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #FF7f50;
+        }
+
+        .menu-button {
+            font-size: 20px;
+            border-radius: 50%;
+            height: 100px;
+            width: 100px;
+            background-color: #FF7f50;
+            border: none;
+            color: white;
+            cursor: pointer;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .hero-section {
+            text-align: left;
+            margin-bottom: 4rem;
+        }
+
+        .hero-title {
+            font-size: 72px;
+            color: #333;
+            margin-bottom: 1rem;
+            font-weight: bold;
+            line-height: 1.2;
+        }
+
+        .hero-subtitle {
+            font-size: 24px;
+            color: #666;
+            max-width: 600px;
+            line-height: 1.5;
+        }
+
+        .highlight {
+            background: linear-gradient(180deg, rgba(255,255,255,0) 75%, #FF7f50 10%);
+            display: inline;
+        }
+
+        .team-image {
+            margin-top: 3rem;
+            width: 100%;
+            height: 400px;
+            background-color: #fff5f2;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .team-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+			
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">COZYPET</div>
+        <button class="menu-button">MENU</button>
+    </header>
+
+    <main class="main-content">
+        <section class="hero-section">
+            <h1 class="hero-title">
+                 <span class="highlight">Customer</span>
+            </h1>
+			<h2 class="hero-title">
+			                 <span class="highlight">Service Center</span>
+			            </h2>
+            <p class="hero-subtitle">
+                Hello, We're bound.kr<br>
+                A creative agency for the creative generation.
+            </p>
+            <div class="team-image">
+                <img src="images/dogcall2.png" alt="Team photo">
+            </div>
+        </section>
+    </main>
+</body>
+</html>

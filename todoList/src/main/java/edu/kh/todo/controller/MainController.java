@@ -183,5 +183,20 @@ public class MainController {
 		
 		return "common/aboutsemi";
 	}
-
+	@GetMapping("aboutuspage")
+	public String aboutuspage() {
+		
+		return "common/aboutuspage";
+	}
+	
+	@GetMapping("us")
+	public String us() {
+		
+		return "common/us";
+	}
+	@GetMapping("us2")
+	public String us2() {
+		
+		return "common/us2";
+	}
 }
