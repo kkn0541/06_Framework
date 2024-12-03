@@ -205,6 +205,7 @@ public class MyPageServiceImpl implements MyPageService {
 						.fileRename(fileRename)
 						.build();
 		
+		
 		int result = mapper.insertUploadFile(uf);
 		
 		// 3. 삽입 (INSERT) 성공 시 파일을 지정된 서버 폴더에 저장 

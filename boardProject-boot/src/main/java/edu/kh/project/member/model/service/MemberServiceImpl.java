@@ -23,8 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	private BCryptPasswordEncoder bcrypt;
 
 	// 로그인 서비스
+
 	@Override
-	public Member login(Member inputMember) {
+	public Member login(Member inputMember) throws Exception {
 
 		// 암호화 진행
 		// bcrypt.encode(문자열) : 문자열을 암호화 하여 반환

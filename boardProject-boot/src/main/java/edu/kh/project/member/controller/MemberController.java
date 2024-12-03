@@ -58,46 +58,52 @@ public class MemberController {
 		// - 체크가 안된 경우 : null
 
 		// 로그인 서비스 호출
-		Member loginMember = service.login(inputMember);
-
-		// 로그인실패시
-		if (loginMember == null) {
-			ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다. ");
-		} else {
-			// Session scope에 loginMember 추가
-			model.addAttribute("loginMember", loginMember);
-			// 1단계 : request scope 에 세팅됨
-			// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 작성하여
-			// session scope로 이동
-
-			// ****Cookie****
-
-			// 이메일 저장
-
-			// 쿠키 객체 생성 ( k :v )
-			Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
-			// saveId = user01@kh.or.kr
-
-			// 쿠키가 적용될 경로 설정
-			// -> 클라이언트가 어떤 요청을 할때 쿠기가 첨부될지 지정
-
-			// ex) "/" : IP 또는 도메인 또는 localhost
-			// --> 메인페이지 + 그 하위 주소 모두
-			cookie.setPath("/");
-
-			// 쿠키의 만료기간 지정
-			// saveId -> checkbox 에 체크가 되있는지
-			if (saveId != null) { // 아이디 저장 체크 시
-				cookie.setMaxAge(60 * 60 * 24 * 30); // 60초 * 60분 * 24시간*30일 ( 30일 초 단위로 지정)
-
-			} else { // 미체크 시
-				cookie.setMaxAge(0); // 0초
-
+		try {
+			
+			Member loginMember = service.login(inputMember);
+			
+			// 로그인실패시
+			if (loginMember == null) {
+				ra.addFlashAttribute("message", "아이디 또는 비밀번호가 일치하지 않습니다. ");
+			} else {
+				// Session scope에 loginMember 추가
+				model.addAttribute("loginMember", loginMember);
+				// 1단계 : request scope 에 세팅됨
+				// 2단계 : 클래스 위에 @SessionAttributes() 어노테이션 작성하여
+				// session scope로 이동
+				
+				// ****Cookie****
+				
+				// 이메일 저장
+				
+				// 쿠키 객체 생성 ( k :v )
+				Cookie cookie = new Cookie("saveId", loginMember.getMemberEmail());
+				// saveId = user01@kh.or.kr
+				
+				// 쿠키가 적용될 경로 설정
+				// -> 클라이언트가 어떤 요청을 할때 쿠기가 첨부될지 지정
+				
+				// ex) "/" : IP 또는 도메인 또는 localhost
+				// --> 메인페이지 + 그 하위 주소 모두
+				cookie.setPath("/");
+				
+				// 쿠키의 만료기간 지정
+				// saveId -> checkbox 에 체크가 되있는지
+				if (saveId != null) { // 아이디 저장 체크 시
+					cookie.setMaxAge(60 * 60 * 24 * 30); // 60초 * 60분 * 24시간*30일 ( 30일 초 단위로 지정)
+					
+				} else { // 미체크 시
+					cookie.setMaxAge(0); // 0초
+					
+				}
+				
+				// 응답 객체에 쿠키 추가 ->클라이언트 전달
+				resp.addCookie(cookie);
+				
 			}
-
-			// 응답 객체에 쿠키 추가 ->클라이언트 전달
-			resp.addCookie(cookie);
-
+		}catch (Exception e) {
+			log.info("로그인 중 예외 발생 try-catch로 예외 처리");
+			e.printStackTrace();
 		}
 
 		return "redirect:/"; // 메인 페이지 요청
